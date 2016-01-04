@@ -10,6 +10,7 @@ public class Arm : MonoBehaviour {
 	public KeyCode punchKey;
 	private float initialUpperPos;
 	private float initialLowerPos;
+	public bool isPunching;
 	
 	void Start () {
 		initialUpperPos = upperArm.spring.targetPosition;
@@ -18,14 +19,20 @@ public class Arm : MonoBehaviour {
 		forearmSpring = forearm.spring;
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	// must be called by the player object
+	public void UpdateCall () {
 		if (Input.GetKeyDown (punchKey)) {
-			//forearm.AddForce (Vector3.right * 30 * direction + Vector3.up * 15, ForceMode.Impulse);
+			CancelInvoke ("resetPunch");
+			isPunching = true;
+			Invoke ("resetPunch", .2f);
 			setTargetPositions (-20f, 0f);
 		} else if (Input.GetKeyUp (punchKey)) {
 			setTargetPositions (initialUpperPos, initialLowerPos);
 		}
+	}
+	
+	private void resetPunch () {
+		isPunching = false;
 	}
 	
 	private void setTargetPositions (float upperArmTarget, float forearmTarget) {
