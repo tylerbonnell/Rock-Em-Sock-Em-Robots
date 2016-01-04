@@ -6,6 +6,7 @@ public class HeadScript : MonoBehaviour {
 	public void PopHead () {
 		HingeJoint joint = GetComponent<HingeJoint> ();
 		joint.autoConfigureConnectedAnchor = false;
-		joint.connectedAnchor = joint.connectedAnchor + Vector3.up * 4;
+		joint.connectedAnchor = joint.connectedAnchor + Vector3.up;
+		joint.anchor = joint.anchor - Vector3.up * 2f;
 	}
 }

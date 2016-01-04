@@ -7,6 +7,7 @@ public class GUI : MonoBehaviour {
 	public Text winText;
 	public Text playAgain;
 	public Text[] controls;
+	public GameObject fireworks;
 
 	// Use this for initialization
 	void Start () {
@@ -24,5 +25,6 @@ public class GUI : MonoBehaviour {
 			t.text = "";
 		winText.text = winnerName.ToUpper () + " WINS";
 		playAgain.text = "PRESS SPACE TO PLAY AGAIN";
+		fireworks.SetActive (true);	
 	}
 }
